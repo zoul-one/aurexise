@@ -39,6 +39,7 @@ function open_item_dialog(frm) {
             { label: 'Stone Charge (Total)', fieldname: 'stone_charge_total', fieldtype: 'Currency' },
             { label: 'Total Making', fieldname: 'total_making', fieldtype: 'Currency' },
             { label: 'Making In Touch', fieldname: 'making_in_touch', fieldtype: 'Check' },
+            { label: 'Have Multiple Stone', fieldname: 'have_multiple_stone', fieldtype: 'Check' },
 
             { fieldtype: 'Section Break' },
 

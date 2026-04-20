@@ -10,10 +10,11 @@
   "design_category",
   "ornament_category",
   "item",
+  "rename_item",
   "column_break_moeb",
   "metal_type",
   "default_uom",
-  "status",
+  "active",
   "making_charge_mc_defaults_section",
   "default_mc_type",
   "column_break_dqwy",
@@ -102,12 +103,6 @@
    "options": "Purity"
   },
   {
-   "default": "0",
-   "fieldname": "status",
-   "fieldtype": "Check",
-   "label": "Active"
-  },
-  {
    "fieldname": "pricing_rule_section",
    "fieldtype": "Section Break",
    "label": "Pricing Rule"
@@ -122,12 +117,23 @@
    "fieldtype": "Link",
    "label": "Design Category",
    "options": "Design Category"
+  },
+  {
+   "fieldname": "rename_item",
+   "fieldtype": "Button",
+   "label": "Rename Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-20 13:53:43.296357",
+ "modified": "2026-04-20 19:49:03.080575",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Ornaments",
