@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:ornament_name",
+ "creation": "2026-04-20 09:10:13.759219",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "ornament_name",
+  "design_category",
+  "ornament_category",
+  "item",
+  "rename_item",
+  "column_break_moeb",
+  "metal_type",
+  "default_uom",
+  "active",
+  "making_charge_mc_defaults_section",
+  "default_mc_type",
+  "column_break_dqwy",
+  "default_mc_amount",
+  "default_mc_charge_percentage",
+  "purity_settings_section",
+  "default_purity",
+  "pricing_rule_section",
+  "pricing_rule"
+ ],
+ "fields": [
+  {
+   "fieldname": "ornament_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ornament Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "ornament_category",
+   "fieldtype": "Link",
+   "label": "Ornament Category",
+   "options": "Ornament Category"
+  },
+  {
+   "fieldname": "metal_type",
+   "fieldtype": "Link",
+   "label": "Metal Type",
+   "options": "Metal Type"
+  },
+  {
+   "fieldname": "default_uom",
+   "fieldtype": "Link",
+   "label": "Default UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_moeb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "making_charge_mc_defaults_section",
+   "fieldtype": "Section Break",
+   "label": "Making Charge (MC) Defaults"
+  },
+  {
+   "fieldname": "default_mc_type",
+   "fieldtype": "Select",
+   "label": "Default MC Type",
+   "options": "\nFixed\nPercentage"
+  },
+  {
+   "fieldname": "column_break_dqwy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.default_mc_type == \"Percentage\"",
+   "fieldname": "default_mc_charge_percentage",
+   "fieldtype": "Float",
+   "label": "Default MC Charge %",
+   "mandatory_depends_on": "eval:doc.default_mc_type == \"Percentage\""
+  },
+  {
+   "depends_on": "eval:doc.default_mc_type == \"Fixed\"",
+   "fieldname": "default_mc_amount",
+   "fieldtype": "Currency",
+   "label": "Default MC Amount",
+   "mandatory_depends_on": "eval:doc.default_mc_type == \"Fixed\""
+  },
+  {
+   "fieldname": "purity_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Purity Settings"
+  },
+  {
+   "fieldname": "default_purity",
+   "fieldtype": "Link",
+   "label": "Default Purity",
+   "options": "Purity"
+  },
+  {
+   "fieldname": "pricing_rule_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing Rule"
+  },
+  {
+   "fieldname": "pricing_rule",
+   "fieldtype": "Table",
+   "options": "Ornament Pricing Rules"
+  },
+  {
+   "fieldname": "design_category",
+   "fieldtype": "Link",
+   "label": "Design Category",
+   "options": "Design Category"
+  },
+  {
+   "fieldname": "rename_item",
+   "fieldtype": "Button",
+   "label": "Rename Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-20 19:49:03.080575",
+ "modified_by": "Administrator",
+ "module": "Aurexise",
+ "name": "Ornaments",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
