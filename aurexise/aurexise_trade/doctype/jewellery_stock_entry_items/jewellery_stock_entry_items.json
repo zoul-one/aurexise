@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-11 12:16:29.062841",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "product",
+  "touch",
+  "item_purity",
+  "quantity",
+  "gross_weight",
+  "stone_weight",
+  "net_weight",
+  "metal_rate",
+  "stone_rate",
+  "making_charge",
+  "diamonds_rate",
+  "total_amound",
+  "tax_amound",
+  "grand_total",
+  "have_multiple_stone"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product"
+  },
+  {
+   "fieldname": "touch",
+   "fieldtype": "Data",
+   "label": "Touch"
+  },
+  {
+   "fieldname": "item_purity",
+   "fieldtype": "Data",
+   "label": "Item Purity"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Float",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "label": "Gross Weight"
+  },
+  {
+   "fieldname": "stone_weight",
+   "fieldtype": "Float",
+   "label": "Stone Weight"
+  },
+  {
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "label": "Net Weight"
+  },
+  {
+   "fieldname": "metal_rate",
+   "fieldtype": "Currency",
+   "label": "Metal Rate"
+  },
+  {
+   "fieldname": "stone_rate",
+   "fieldtype": "Currency",
+   "label": "Stone Rate"
+  },
+  {
+   "fieldname": "making_charge",
+   "fieldtype": "Currency",
+   "label": "Making Charge"
+  },
+  {
+   "fieldname": "diamonds_rate",
+   "fieldtype": "Currency",
+   "label": "Diamonds Rate"
+  },
+  {
+   "fieldname": "total_amound",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amound"
+  },
+  {
+   "fieldname": "tax_amound",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Tax Amound"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total"
+  },
+  {
+   "default": "0",
+   "fieldname": "have_multiple_stone",
+   "fieldtype": "Check",
+   "label": "Have Multiple Stone"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-24 09:16:44.838670",
+ "modified_by": "Administrator",
+ "module": "Aurexise Trade",
+ "name": "Jewellery Stock Entry Items",
+ "owner": "admin@gmail.com",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

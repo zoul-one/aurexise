@@ -12,11 +12,11 @@ class JewelleryStockEntry(Document):
         pr = frappe.new_doc("Purchase Receipt")
 
         # Parent Mapping
-        pr.supplier = self.supplier_name
+        pr.supplier = self.supplier
         pr.posting_date = self.purchase_invoice_date
 
         # Warehouse (change this)
-        pr.set_warehouse = "Stores - Your Company"
+        # pr.set_warehouse = "Stores - Your Company"
 
         # Loop through child table
         for d in self.details:
@@ -31,10 +31,10 @@ class JewelleryStockEntry(Document):
             item.custom_stone_weight = d.stone_weight
 
             # Rate
-            item.rate = d.total_amount or 0
+            item.rate = d.total_amound or 0
             item.amount = item.qty * item.rate
 
         pr.insert(ignore_permissions=True)
         pr.submit()
 
-        self.db_set("purchase_receipt", pr.name)
+        #self.db_set("purchase_receipt", pr.name)
