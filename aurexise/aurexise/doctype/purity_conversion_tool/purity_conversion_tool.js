@@ -118,7 +118,7 @@ function validate_mandatory_fields(frm) {
 function prepare_conversion_chart(frm) {
 	if (frm.doc.party_type && frm.doc.party && frm.doc.metal_type && frm.doc.purity) {
 		frappe.call({
-			method: 'aumms.aumms.doctype.purity_conversion_tool.purity_conversion_tool.get_metal_ledger_entries',
+			method: 'aurexise.aurexise.doctype.purity_conversion_tool.purity_conversion_tool.get_metal_ledger_entries',
 			args: {
 				party_type: frm.doc.party_type,
 				party: frm.doc.party,

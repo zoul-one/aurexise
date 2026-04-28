@@ -54,7 +54,7 @@
    "label": "Conversion Chart"
   },
   {
-   "depends_on": "eval: (doc.party && doc.item_type)",
+   "depends_on": "eval: (doc.party && doc.metal_type)",
    "description": "Convert to this Purity",
    "fieldname": "purity",
    "fieldtype": "Link",
@@ -177,7 +177,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval: (doc.party && doc.item_type)",
+   "depends_on": "eval: (doc.party && doc.metal_type)",
    "description": "Convert all GW and AW to this UOM ",
    "fieldname": "uom",
    "fieldtype": "Link",
@@ -196,7 +196,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-24 10:40:31.443322",
+ "modified": "2026-04-24 13:30:07.618176",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Purity Conversion Tool",

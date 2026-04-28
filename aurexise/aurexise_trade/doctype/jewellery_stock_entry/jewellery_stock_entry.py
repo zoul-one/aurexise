@@ -29,6 +29,12 @@ class JewelleryStockEntry(Document):
             item.custom_gross_weight = d.gross_weight
             item.custom_net_weight = d.net_weight
             item.custom_stone_weight = d.stone_weight
+            item.custom_metal_value = d.metal_value
+            item.custom_total_making = d.total_making
+            item.custom_have_multiple_stone = d.have_multiple_stone
+            item.custom_metal_rate = d.board_rate
+            item.custom_stone_rate = d.stone_charge_total
+            item.custom_diamonds_rate = d.diamond_rate_total
 
             # Rate
             item.rate = d.total_amound or 0
