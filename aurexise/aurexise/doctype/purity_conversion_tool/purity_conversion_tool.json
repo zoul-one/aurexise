@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "party_type",
+  "column_break_osjg",
   "party",
   "conversion_chart_section",
   "purity",
@@ -17,15 +18,17 @@
   "column_break_10",
   "section_break_8",
   "purity_in_hand",
-  "purity_to_be_obtained",
-  "gold_in_hand",
   "purity_percentage_in_hand",
-  "purity_percentage_to_be_obtained",
-  "column_break_11",
-  "alloy_obtained",
-  "gold_obtained",
   "uom_of_gold_in_hand",
+  "gold_in_hand",
+  "column_break_11",
+  "purity_to_be_obtained",
+  "purity_percentage_to_be_obtained",
   "uom_of_gold_to_be_obtained",
+  "section_break_gsnz",
+  "gold_obtained",
+  "column_break_tjpj",
+  "alloy_obtained",
   "section_break_17",
   "column_break_19",
   "is_purity_item",
@@ -51,10 +54,11 @@
   {
    "fieldname": "conversion_chart_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Conversion Chart"
   },
   {
-   "depends_on": "eval: (doc.party && doc.item_type)",
+   "depends_on": "eval: (doc.party && doc.metal_type)",
    "description": "Convert to this Purity",
    "fieldname": "purity",
    "fieldtype": "Link",
@@ -96,33 +100,28 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "purity_in_hand",
    "fieldtype": "Link",
    "label": "Purity in Hand",
    "options": "Purity"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "purity_to_be_obtained",
    "fieldtype": "Link",
    "label": "Purity to be obtained",
    "options": "Purity"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "gold_in_hand",
    "fieldtype": "Float",
    "label": "Gold in Hand"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "purity_percentage_in_hand",
    "fieldtype": "Percent",
    "label": "Purity Percentage in hand"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "purity_percentage_to_be_obtained",
    "fieldtype": "Percent",
    "label": "Purity Percentage to be obtained"
@@ -132,28 +131,24 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "alloy_obtained",
    "fieldtype": "Float",
    "label": "Alloy obtained from the Conversion",
    "read_only": 1
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "gold_obtained",
    "fieldtype": "Float",
    "label": "Gold obtained",
    "read_only": 1
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "uom_of_gold_in_hand",
    "fieldtype": "Link",
    "label": "UOM of Gold in Hand",
    "options": "UOM"
   },
   {
-   "depends_on": "eval: !doc.party_type",
    "fieldname": "uom_of_gold_to_be_obtained",
    "fieldtype": "Link",
    "label": "UOM of Gold to be obtained",
@@ -177,7 +172,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval: (doc.party && doc.item_type)",
+   "depends_on": "eval: (doc.party && doc.metal_type)",
    "description": "Convert all GW and AW to this UOM ",
    "fieldname": "uom",
    "fieldtype": "Link",
@@ -191,12 +186,24 @@
    "label": "Metal Type",
    "options": "Metal Type",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_gsnz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_tjpj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_osjg",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-24 10:40:31.443322",
+ "modified": "2026-04-29 13:01:23.868525",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Purity Conversion Tool",

@@ -20,39 +20,64 @@ function open_item_dialog(frm) {
 
             { fieldtype: 'Section Break' },
 
-            { label: 'Category', fieldname: 'item', fieldtype: 'Link', options: 'Item' },
-            { label: 'Product Name', fieldname: 'product', fieldtype: 'Data' },
-            { label: 'Purchase Touch', fieldname: 'touch', fieldtype: 'Float' },
-            { label: 'Item Purity', fieldname: 'item_purity', fieldtype: 'Float' },
+            { label: 'Item', fieldname: 'item', fieldtype: 'Link', options: 'Item', 
+                onchange: function() {
+                    let item_code = d.get_value('item');
+                    if (item_code) {
+                        frappe.db.get_value('Item', item_code, 'item_name')
+                            .then(r => {
+                                if (r.message) {
+                                    d.set_value('product', r.message.item_name);
+                                }
+                            });
+                    }
+                }
+            },
+            { label: 'Product Name', fieldname: 'product_name', fieldtype: 'Data' },
+            { label: 'Item Purity', fieldname: 'item_purity', fieldtype: 'Data' },
 
             { fieldtype: 'Column Break' },
 
-            { label: 'Quantity', fieldname: 'quantity', fieldtype: 'Float', default: 1 },
+            { label: 'Quantity', fieldname: 'quantity', fieldtype: 'Float'},
             { label: 'Gross Weight', fieldname: 'gross_weight', fieldtype: 'Float' },
-            { label: 'Stone Weight', fieldname: 'stone_weight', fieldtype: 'Float' },
+            { label: 'Have Stone', fieldname: 'have_stone', fieldtype: 'Check' },
+            { label: 'Stone Weight', fieldname: 'stone_weight', fieldtype: 'Float', depends_on: 'eval:doc.have_stone' },
             { label: 'Net Weight', fieldname: 'net_weight', fieldtype: 'Float', read_only: 1 },
 
             { fieldtype: 'Column Break' },
 
-            { label: 'Stone (ct)', fieldname: 'stone_ct', fieldtype: 'Float' },
-            { label: 'Making %', fieldname: 'making_percent', fieldtype: 'Float' },
-            { label: 'Stone Charge (Total)', fieldname: 'stone_charge_total', fieldtype: 'Currency' },
-            { label: 'Total Making', fieldname: 'total_making', fieldtype: 'Currency' },
-            { label: 'Making In Touch', fieldname: 'making_in_touch', fieldtype: 'Check' },
-            { label: 'Have Multiple Stone', fieldname: 'have_multiple_stone', fieldtype: 'Check' },
-
+            { label: 'Stone (ct)', fieldname: 'stone_ct', fieldtype: 'Float', depends_on: 'eval:doc.have_stone'},
+            { label: 'Stone Charge (Total)', fieldname: 'stone_charge_total', fieldtype: 'Currency', depends_on: 'eval:doc.have_stone' },
+            { label: 'Have Multiple Stone', fieldname: 'have_multiple_stone', fieldtype: 'Check', depends_on: 'eval:doc.have_stone' },
             { fieldtype: 'Section Break' },
 
-            { label: 'Metal Rate', fieldname: 'metal_rate', fieldtype: 'Currency' },
-            { label: 'Making Per Gram', fieldname: 'making_per_gram', fieldtype: 'Currency' },
+            { label: 'Making In Touch', fieldname: 'making_in_touch', fieldtype: 'Check' ,             
+            onchange: function() {
+                if (d.get_value('making_in_touch')) {
+                    d.set_value('making_in_charge', 0);
+                }
+            }},
+            { label: 'Making In Charge', fieldname: 'making_in_charge', fieldtype: 'Check' ,             
+            onchange: function() {
+                if (d.get_value('making_in_charge')) {
+                    d.set_value('making_in_touch', 0);
+                }
+            }},
+            { label: 'Purchase Touch', fieldname: 'touch', fieldtype: 'Float', depends_on: 'eval:doc.making_in_touch' },
+            { label: 'Default MC Type', fieldname: 'default_mc_type', fieldtype: 'Select',  options: ['Fixed', 'Percentage'], depends_on: 'eval:doc.making_in_charge'},
+            { label: 'Default MC Charge %', fieldname: 'default_mc_charge_percentage', fieldtype: 'Float',depends_on: 'eval:doc.default_mc_type == "Percentage"' },
+            { label: 'Default MC Amount', fieldname: 'default_mc_amount', fieldtype: 'Currency',depends_on: 'eval:doc.default_mc_type == "Fixed"' },
+            { label: 'Board Rate', fieldname: 'board_rate', fieldtype: 'Currency' },
+            { label: 'Making Per Gram', fieldname: 'making_per_gram', fieldtype: 'Currency' ,depends_on: 'eval:doc.making_in_charge'},
+            { label: 'Total Making', fieldname: 'total_making', fieldtype: 'Currency' },
             { label: 'Diamond Rate Total (ct)', fieldname: 'diamond_rate_total', fieldtype: 'Currency' },
             { label: 'Metal Value', fieldname: 'metal_value', fieldtype: 'Currency' },
-            { label: 'Tax Amount', fieldname: 'tax_amount', fieldtype: 'Currency' },
-
+        
             { fieldtype: 'Column Break' },
 
             { label: 'Piece Rate', fieldname: 'piece_rate', fieldtype: 'Currency' },
             { label: 'Certification Charge', fieldname: 'certification_charge', fieldtype: 'Currency' },
+            { label: 'Tax Amount', fieldname: 'tax_amount', fieldtype: 'Currency' },
             { label: 'Total Amount', fieldname: 'total_amount', fieldtype: 'Currency' },
             { label: 'Grand Total Amount', fieldname: 'grand_total', fieldtype: 'Currency' }
 
@@ -77,11 +102,43 @@ function open_item_dialog(frm) {
     function calculate_net() {
         let gross = d.get_value('gross_weight') || 0;
         let stone = d.get_value('stone_weight') || 0;
-        d.set_value('net_weight', gross + stone);
+        d.set_value('net_weight', gross - stone);
+    }
+    function calculate_metal_value() {
+        let board_rate = d.get_value('board_rate') || 0;
+        let net_weight = d.get_value('net_weight') || 0;
+
+        let metal_value = board_rate * net_weight;
+        d.set_value('metal_value', metal_value);
+    }
+
+    function calculate_total_amount() {
+        let metal_value = d.get_value('metal_value') || 0;
+        let total_making = d.get_value('total_making') || 0;
+        let stone_charge_total = d.get_value('stone_charge_total') || 0;
+
+        // Total Amount
+        let total_amount = metal_value + total_making + stone_charge_total;
+        d.set_value('total_amount', total_amount);
+    }
+    function calculate_grand_total() {
+        let total_amount = d.get_value('total_amount') || 0;
+        let tax_amount = d.get_value('tax_amount') || 0;
+
+        // Total Amount
+        let grand_total = total_amount + tax_amount
+        d.set_value('grand_total', grand_total);
     }
 
     d.fields_dict.gross_weight.df.onchange = calculate_net;
     d.fields_dict.stone_weight.df.onchange = calculate_net;
+    d.fields_dict.board_rate.df.onchange = calculate_metal_value;
+    d.fields_dict.net_weight.df.onchange = calculate_metal_value;
+    d.fields_dict.total_making.df.onchange = calculate_total_amount;
+    d.fields_dict.stone_charge_total.df.onchange = calculate_total_amount;
+    d.fields_dict.metal_value.df.onchange = calculate_total_amount;
+    d.fields_dict.total_amount.df.onchange = calculate_grand_total;
+    d.fields_dict.tax_amount.df.onchange = calculate_grand_total;
 
     d.show();
 }
