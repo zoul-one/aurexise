@@ -15,14 +15,14 @@ frappe.ui.form.on('Purity Conversion Tool', {
 		frm.set_value('party_type', '')
 
 	},
-	purity: function (frm) {
-		if (frm.doc.purity && validate_mandatory_fields(frm)) {
-			prepare_conversion_chart(frm);
-		}
-		else {
-			clear_values(frm);
-		}
-	},
+	// purity: function (frm) {
+	// 	if (frm.doc.purity && validate_mandatory_fields(frm)) {
+	// 		prepare_conversion_chart(frm);
+	// 	}
+	// 	else {
+	// 		clear_values(frm);
+	// 	}
+	// },
 	party(frm) {
 		if (frm.doc.party && frm.doc.purity && frm.doc.metal_type) {
 			frm.trigger('purity')
@@ -195,7 +195,7 @@ let show_total_gw_and_aw = function (frm) {
 
 let set_purity_percentage = function(purity, field) {
 	frappe.call({
-		method: 'aumms.aumms.doctype.purity_conversion_tool.purity_conversion_tool.get_purity_percentage',
+		method: 'aurexise.aurexise.doctype.purity_conversion_tool.purity_conversion_tool.get_purity_percentage',
 		args: {
 			purity: purity
 		},
