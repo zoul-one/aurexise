@@ -9,11 +9,13 @@
   "item",
   "product_name",
   "item_purity",
-  "quantity",
+  "purity_percentage",
+  "no_of_items",
   "gross_weight",
   "have_stone",
   "stone_weight",
   "net_weight",
+  "weight_in_100_purity",
   "stone_rate",
   "stone_ct",
   "stone_charge_total",
@@ -23,7 +25,7 @@
   "touch",
   "default_mc_type",
   "default_mc_charge_percentage",
-  "default_mc_amount",
+  "default_mc_amound",
   "board_rate",
   "making_per_gram",
   "total_making",
@@ -53,11 +55,6 @@
    "fieldname": "item_purity",
    "fieldtype": "Data",
    "label": "Item Purity"
-  },
-  {
-   "fieldname": "quantity",
-   "fieldtype": "Float",
-   "label": "Quantity"
   },
   {
    "fieldname": "gross_weight",
@@ -154,11 +151,6 @@
    "label": "Default MC Charge %"
   },
   {
-   "fieldname": "default_mc_amount",
-   "fieldtype": "Currency",
-   "label": "Default MC Amount"
-  },
-  {
    "fieldname": "making_per_gram",
    "fieldtype": "Currency",
    "label": "Making Per Gram"
@@ -187,13 +179,33 @@
    "fieldname": "certification_charge",
    "fieldtype": "Currency",
    "label": "Certification Charge"
+  },
+  {
+   "fieldname": "purity_percentage",
+   "fieldtype": "Float",
+   "label": "Purity %"
+  },
+  {
+   "fieldname": "weight_in_100_purity",
+   "fieldtype": "Float",
+   "label": "Weight in 100 Purity"
+  },
+  {
+   "fieldname": "no_of_items",
+   "fieldtype": "Float",
+   "label": "No of Items"
+  },
+  {
+   "fieldname": "default_mc_amound",
+   "fieldtype": "Currency",
+   "label": "Default MC Amound"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-04-28 11:40:05.467140",
+ "modified": "2026-05-09 11:52:41.939776",
  "modified_by": "Administrator",
  "module": "Aurexise Trade",
  "name": "Jewellery Stock Entry Items",

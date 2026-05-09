@@ -15,7 +15,6 @@ class JewelleryStockEntry(Document):
         pr.supplier = self.supplier
         pr.posting_date = self.purchase_invoice_date
 
-        # Warehouse (change this)
         # pr.set_warehouse = "Stores - Your Company"
 
         # Loop through child table
@@ -23,8 +22,8 @@ class JewelleryStockEntry(Document):
 
             item = pr.append("items", {})
 
-            item.item_code = d.item or d.product_name
-            item.qty = d.quantity or 1
+            item.item_code = d.item
+            item.qty = d.weight_in_100_purity
 
             item.custom_gross_weight = d.gross_weight
             item.custom_net_weight = d.net_weight
@@ -35,10 +34,8 @@ class JewelleryStockEntry(Document):
             item.custom_metal_rate = d.board_rate
             item.custom_stone_rate = d.stone_charge_total
             item.custom_diamonds_rate = d.diamond_rate_total
-
-            # Rate
-            item.rate = d.total_amound or 0
-            item.amount = item.qty * item.rate
+            item.custom_no_of_items = d.no_of_items
+            item.rate = d.board_rate or 0
 
         pr.insert(ignore_permissions=True)
         pr.submit()
