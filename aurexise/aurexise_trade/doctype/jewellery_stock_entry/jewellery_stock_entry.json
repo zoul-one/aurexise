@@ -86,7 +86,7 @@
   },
   {
    "fieldname": "purchase_invoice_no",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Purchase Invoice No",
    "options": "Purchase Invoice"
   },
@@ -128,7 +128,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-17 07:18:59.408166",
+ "modified": "2026-05-09 10:37:44.428877",
  "modified_by": "Administrator",
  "module": "Aurexise Trade",
  "name": "Jewellery Stock Entry",
