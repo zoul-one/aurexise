@@ -25,7 +25,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Item",
-   "options": "Ornaments",
+   "options": "Item",
    "reqd": 1
   },
   {
@@ -33,7 +33,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "item.ornament_name",
+   "fetch_from": "item.item_name",
    "fieldname": "item_name",
    "fieldtype": "Data",
    "label": "Item Name"
@@ -104,7 +104,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-09 12:32:39.379533",
+ "modified": "2026-05-18 13:51:33.555250",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Jewellery Receipt Items",
