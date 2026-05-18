@@ -56,7 +56,8 @@
    "fieldname": "item",
    "fieldtype": "Link",
    "label": "Item",
-   "options": "Item"
+   "options": "Item",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_moeb",
@@ -133,7 +134,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-20 19:49:03.080575",
+ "modified": "2026-05-18 10:59:10.635662",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Ornaments",
