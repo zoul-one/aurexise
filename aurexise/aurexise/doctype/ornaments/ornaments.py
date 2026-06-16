@@ -22,7 +22,7 @@ class Ornaments(Document):
             "item_name": self.ornament_name,
             "item_group": "All Item Groups",
             "stock_uom": self.default_uom,
-            "is_stock_item": 0,
+            "is_stock_item": 1,
             "custom_is_ornament_item": 1,
             "description": f"Ornament: {self.ornament_name}",
         })

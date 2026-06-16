@@ -14,8 +14,8 @@ class JewelleryStockEntry(Document):
         # Parent Mapping
         pr.supplier = self.supplier
         pr.posting_date = self.purchase_invoice_date
-
-        # pr.set_warehouse = "Stores - Your Company"
+        pr.company = frappe.defaults.get_global_default("company")
+        pr.set_warehouse = "Stores - ZG"
 
         # Loop through child table
         for d in self.details:
@@ -24,7 +24,7 @@ class JewelleryStockEntry(Document):
 
             item.item_code = d.item
             item.qty = d.weight_in_100_purity
-
+            item.custom_purity = d.item_purity
             item.custom_gross_weight = d.gross_weight
             item.custom_net_weight = d.net_weight
             item.custom_stone_weight = d.stone_weight
@@ -36,8 +36,9 @@ class JewelleryStockEntry(Document):
             item.custom_diamonds_rate = d.diamond_rate_total
             item.custom_no_of_items = d.no_of_items
             item.rate = d.board_rate or 0
+            item.warehouse = "Stores - ZG"
 
         pr.insert(ignore_permissions=True)
-        pr.submit()
+        pr.save()
 
         #self.db_set("purchase_receipt", pr.name)

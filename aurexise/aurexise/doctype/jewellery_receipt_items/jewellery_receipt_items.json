@@ -10,7 +10,7 @@
   "purity_percentage",
   "weight",
   "weight_in_100_purity",
-  "barcode",
+  "sku",
   "column_break_ehri",
   "item_name",
   "have_stone",
@@ -96,15 +96,15 @@
    "label": "Have Multiple Stone"
   },
   {
-   "fieldname": "barcode",
+   "fieldname": "sku",
    "fieldtype": "Barcode",
-   "label": "Barcode"
+   "label": "SKU"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-18 13:51:33.555250",
+ "modified": "2026-05-18 14:05:47.495452",
  "modified_by": "Administrator",
  "module": "Aurexise",
  "name": "Jewellery Receipt Items",

@@ -5,7 +5,5 @@
 from frappe.model.document import Document
 
 
-class JewelleryReceiptItems(Document):
-	def validate(self):
-		if not self.sku:
-			self.sku = self.name
+class AurexiseSettings(Document):
+	pass

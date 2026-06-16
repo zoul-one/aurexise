@@ -26,8 +26,8 @@ frappe.ui.form.on('Purchase Receipt', {
                     table_data.push({
                         purchase_receipt_item: item.name,
                         item_code: item.item_code,
-                        purity: item.custom_item_purity,
-                        purity_percentage: item.custom_purity_percentage,
+                        purity: item.custom_purity,
+                        // purity_percentage: item.custom_purity_percentage,
 
                         item_name: item.item_name,
                         weight: 0,
@@ -156,7 +156,7 @@ frappe.ui.form.on('Purchase Receipt', {
                                     item: source_item.item_code,
                                     item_name: source_item.item_name,
 
-                                    purity: source_item.custom_purity,
+                                    purity:source_item.custom_purity,
                                     purity_percentage: source_item.custom_purity_percentage,
 
                                     weight: row.weight,
